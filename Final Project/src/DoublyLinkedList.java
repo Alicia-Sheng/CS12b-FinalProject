@@ -1,5 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Iterator;
+import java.util.Scanner;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList{
 	public Node head;
 	public Node tail;
 	public int size = 0;
@@ -58,32 +62,17 @@ public class DoublyLinkedList {
 		}
 		return true;
 	}
-
-//	public DoublyLinkedList(Node question) {
-//		this.head=question;
-//		this.tail=question;
-//		this.size++;
-//	}
-//	public Node getHead() {
-//		return this.head;
-//	}
-//	public Node getTail() {
-//		return this.tail;
-//	}
-	public int getSize() {
-		return this.size;
+	//readAnswers
+	public void readAnswerFile(String fileName)throws FileNotFoundException{
+		Scanner file=new Scanner(new File(fileName));
+		Node current=head;
+		
+		while (file.hasNextLine()) {
+			String line=file.nextLine();
+			current.question.setAnswer(line);
+			if (this.hasNext(current)) {
+				current=current.next;
+			}
+		}
 	}
-
-//	public void addNode(Question question) {
-//		if (this.head==null) {
-//			this.head=new Node(question);
-//		}else {
-//			Node current=this.head;
-//			while (current.getNext()!=null) {
-//				current=current.getNext();
-//			}
-//			current.setNext(new Node(question));
-//		}
-//		
-//	}
 }
