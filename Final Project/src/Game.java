@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.*;
+import java.util.*;
 
 public class Game implements Runnable {
 
@@ -12,21 +14,28 @@ public class Game implements Runnable {
 	private BufferStrategy bufferStrategy;
 	private Graphics graphics;
 	private Key key;
+	private GameState gameState;
 
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
 		key = new Key();
+		//player = new Player();
 	}
 
 	private void initialize() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(key);
+		gameState = new GameState(this);
+		GameState.setState(gameState);
 	}
 
 	private void tick() {
-
+		key.tick();
+		if(GameState.getState() != null) {
+			GameState.getState().tick();	
+		}
 	}
 
 	private void render() {
@@ -38,10 +47,10 @@ public class Game implements Runnable {
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.clearRect(0, 0, width, height); // clears the whole screen
 		
-        graphics.setColor(Color.red); 
-        graphics.setFont(new Font("Bold", 1, 20)); 
-        graphics.drawString("Test", 100, 100); 
-        
+		if(GameState.getState() != null) {
+			GameState.getState().render(graphics);	
+		}
+
 		bufferStrategy.show();
 		graphics.dispose();
 	}
