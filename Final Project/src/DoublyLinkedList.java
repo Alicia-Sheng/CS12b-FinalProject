@@ -16,20 +16,27 @@ public class DoublyLinkedList {
 		tail = node;
 		size = 1;
 	}
-	
+
 	public void insertNext(Node node, Question question) {
 		Node newNode = new Node(question);
 		if (node.next == null) {
 			tail.next = node;
 			node.prev = tail;
 			tail = node;
-		}
-		else {
+		} else {
 			newNode.next = node.next;
 			node.next.prev = newNode;
 			node.next = newNode;
 			newNode.prev = node;
 		}
+		size++;
+	}
+	
+	public void insertEnd(Question question) {
+		Node node = new Node(question);
+		tail.next = node;
+		node.prev = tail;
+		tail = node;
 		size++;
 	}
 
