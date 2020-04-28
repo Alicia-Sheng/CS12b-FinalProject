@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class TestRun {
 	//readQuestion
-	public static ArrayList<String> readFile(String fileName)throws FileNotFoundException {
+	public static ArrayList<String> readPromptFile(String fileName)throws FileNotFoundException {
 		Scanner file=new Scanner(new File(fileName));
 		ArrayList<String> prompts=new ArrayList<String>();
 		
@@ -27,19 +27,38 @@ public class TestRun {
 		**/
 		return prompts;
 	}
-	public static void main(String[] arg) throws FileNotFoundException{
-		ArrayList<String> prompts=readFile("src/a.txt");
-	
-		DoublyLinkedList questions=new DoublyLinkedList();
-		for (int i=0;i<prompts.size();i++) {
-			String prompt=prompts.get(i);
-			Question question=new Question(prompt,"a","b");
-			questions.addNode(question);
+	//readAnswers
+	public static ArrayList<String> readAnswerFile(String fileName)throws FileNotFoundException{
+		Scanner file=new Scanner(new File(fileName));
+		ArrayList<String> answers=new ArrayList<String>();
+		
+		while (file.hasNextLine()) {
+			String line=file.nextLine();
+			answers.add(line);
 		}
+		return answers;
+	}
+	
+	public static DoublyLinkedList storeQuestions(String catagory,String fileName1, String fileName2) throws FileNotFoundException {	
+		ArrayList<String> prompts=readPromptFile(fileName1);
+		ArrayList<String> answers=readAnswerFile(fileName2);
+		DoublyLinkedList questions=new DoublyLinkedList();
+		for (int i=0;i<prompts.size();i++){
+			String prompt=prompts.get(i);
+			String answer=answers.get(i);
+			Question question=new Question(prompt,answer,catagory);
+			questions.addNode(question);
+		}	
+		return questions;
+	}
+	
+	public static void main(String[] arg) throws FileNotFoundException{
+		DoublyLinkedList questions=storeQuestions("biology","src/a.txt","src/BiologyAnswer.txt");
 		Node current=questions.getHead();
 		while (current!=null) {
-			current.getQuestion().printQuestion();
+			System.out.println(current.getQuestion().printQuestion());
+			System.out.println(current.getQuestion().printAnswer());
 			current=current.getNext();
-		}	
+		}
 	}
 }
