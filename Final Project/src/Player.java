@@ -5,10 +5,23 @@ import java.io.FileNotFoundException;
 
 public class Player {
 
-	private Game game;
-	private String path = "src/biology.txt";
-	public DoublyLinkedList question;
-	public Node node;
+		private Game game;
+	
+	private String pathBio = "src/Biology.txt"; private String pathBioAnswer="src/BiologyAnswer.txt";
+	private String pathJava = "src/Java.txt"; private String pathJavaAnswer="src/JavaAnswer.txt";
+	private String pathMovie = "src/Biology.txt"; private String pathMovieAnswer="src/BiologyAnswer.txt";
+	private String pathEncy = "src/Java.txt"; private String pathEncyAnswer="src/JavaAnswer.txt";
+	
+	public DoublyLinkedList bioQuestion;
+	public DoublyLinkedList javaQuestion;
+	public DoublyLinkedList movieQuestion;
+	public DoublyLinkedList encyQuestion;
+	
+	public Node nodeBio; 
+	public Node nodeJava; 
+	public Node nodeMovie; 
+	public Node nodeEncy;
+	
 	String show;
 	public int health;
 	
@@ -16,11 +29,25 @@ public class Player {
 		this.game = game;
 		health = 3;
 		try {
-			question = ReadQA.readFile(path);
+			bioQuestion = ReadQA.readFile(pathBio);
+			bioQuestion.readAnswerFile(pathBioAnswer);
+			
+			javaQuestion = ReadQA.readFile(pathJava);
+			javaQuestion.readAnswerFile(pathJavaAnswer);
+			
+			movieQuestion = ReadQA.readFile(pathMovie);
+			movieQuestion.readAnswerFile(pathMovieAnswer);
+			
+			encyQuestion = ReadQA.readFile(pathEncy);
+			encyQuestion.readAnswerFile(pathEncyAnswer);
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		node = question.head;
+		nodeBio = bioQuestion.head;
+		nodeJava = javaQuestion.head;
+		nodeMovie = movieQuestion.head;
+		nodeEncy = encyQuestion.head;
 	}
 
 	public void tick() {
