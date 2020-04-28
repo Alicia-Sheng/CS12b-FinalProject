@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
-public class TestRun {
+public class TestRun2 {
 	//readQuestion
-	public static ArrayList<String> readPromptFile(String fileName)throws FileNotFoundException {
+	public static DoublyLinkedList readFile(String fileName)throws FileNotFoundException {
 		Scanner file=new Scanner(new File(fileName));
-		ArrayList<String> prompts=new ArrayList<String>();
+		DoublyLinkedList storeQuestion=new DoublyLinkedList();
 		
 		while (file.hasNextLine()){
 			String onePrompt="";
@@ -16,8 +16,8 @@ public class TestRun {
 				String line=file.nextLine();
 				onePrompt+=line+"\n";
 			}
-			prompts.add(onePrompt);
-			
+			Question question=new Question(onePrompt);
+			storeQuestion.insertEnd(question);
 		}
 		/**
 		System.out.println(prompts.size());
@@ -25,40 +25,27 @@ public class TestRun {
 			System.out.println(prompts.get(i));
 		}
 		**/
-		return prompts;
+		return storeQuestion;
 	}
-	//readAnswers
-	public static ArrayList<String> readAnswerFile(String fileName)throws FileNotFoundException{
-		Scanner file=new Scanner(new File(fileName));
-		ArrayList<String> answers=new ArrayList<String>();
-		
-		while (file.hasNextLine()) {
-			String line=file.nextLine();
-			answers.add(line);
+	//readAnswers:haven't re-written yet
+		public static ArrayList<String> readAnswerFile(String fileName)throws FileNotFoundException{
+			Scanner file=new Scanner(new File(fileName));
+			ArrayList<String> answers=new ArrayList<String>();
+			
+			while (file.hasNextLine()) {
+				String line=file.nextLine();
+				answers.add(line);
+			}
+			return answers;
 		}
-		return answers;
-	}
-	
-	public static DoublyLinkedList storeQuestions(String catagory,String fileName1, String fileName2) throws FileNotFoundException {	
-		ArrayList<String> prompts=readPromptFile(fileName1);
-		ArrayList<String> answers=readAnswerFile(fileName2);
-		DoublyLinkedList questions=new DoublyLinkedList();
-		for (int i=0;i<prompts.size();i++){
-			String prompt=prompts.get(i);
-			String answer=answers.get(i);
-			Question question=new Question(prompt,answer,catagory);
-			questions.addNode(question);
-		}	
-		return questions;
-	}
-	
+
 	public static void main(String[] arg) throws FileNotFoundException{
-		DoublyLinkedList questions=storeQuestions("biology","src/a.txt","src/BiologyAnswer.txt");
-		Node current=questions.getHead();
-		while (current!=null) {
-			System.out.println(current.getQuestion().printQuestion());
-			System.out.println(current.getQuestion().printAnswer());
-			current=current.getNext();
-		}
+		DoublyLinkedList questions=readFile("src/a.txt");
+		//traverse to test code
+				Node current=questions.head;
+				while (current!=null) {
+					System.out.println(current.question.printQuestion());
+					current=current.next;
+				}
 	}
 }
