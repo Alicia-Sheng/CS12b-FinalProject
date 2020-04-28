@@ -12,6 +12,10 @@ public class Question {
 		this.answer=answer;
 		this.catagory=catagory;
 	}
+	public Question (String prompt,String catagory) {
+		this.prompt=prompt;
+		this.catagory=catagory;
+	}
 	public String getPrompt() {
 		return this.prompt;
 	}
@@ -32,7 +36,13 @@ public class Question {
 	public void setCatagory(String catagory) {
 		this.catagory=catagory;
 	}
-	public void printQuestion() {
-		System.out.println(this.prompt);
+	public String printQuestion() {
+		return this.prompt;
+	}
+	public String printAnswer() {
+		return this.answer;
+	}
+	public String printCatagory() {
+		return this.catagory;
 	}
 }
