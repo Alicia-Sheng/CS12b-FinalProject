@@ -31,13 +31,18 @@ public class DoublyLinkedList {
 		}
 		size++;
 	}
-	
+
 	public void insertEnd(Question question) {
 		Node node = new Node(question);
-		tail.next = node;
-		node.prev = tail;
-		tail = node;
-		size++;
+		if (head == null) {
+			head = node;
+			tail = node;
+		} else {
+			tail.next = node;
+			node.prev = tail;
+			tail = node;
+			size++;
+		}
 	}
 
 	public boolean hasPrev(Node node) {
