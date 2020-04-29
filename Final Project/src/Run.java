@@ -1,6 +1,14 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * 
+ * functions: Q&A; choose category; check invalid inputs; loop QA's; score system; win and lose; 
+ * 
+ * @author Alicia Sheng, Emma Xu
+ *
+ */
+
 public class Run {
 
 	private static String pathBio = "src/Biology.txt";
@@ -24,13 +32,18 @@ public class Run {
 
 	private static int score;
 	private static int qNumEachCat = 5;
+	private static int winPoints = 3;
+	private static boolean run = true;
 
 	public static void main(String[] args) throws FileNotFoundException {
-		boolean win = false;
 		initialize();
 		print();
-		while (!win) {
+		while (run) {
 			QA();
+			if (score >= winPoints) {
+				System.out.println("Congratulations! You win!");
+				run = false;
+			}
 		}
 	}
 
@@ -58,10 +71,11 @@ public class Run {
 	public static void print() {
 		System.out.println("Question and answer time!");
 		System.out.println("There are four catagories, with each " + qNumEachCat + " questions.");
-		System.out.println("You can choose freely to answer the questions from each category for " + qNumEachCat + " times.");
+		System.out.println(
+				"You can choose freely to answer the questions from each category for " + qNumEachCat + " times.");
 		System.out.println("Everytime you get an answer correct, you get 1 more point.");
-		System.out.println("You will win after you get 10 points.");
-		System.out.println("==============================");
+		System.out.println("You will win after you get " + winPoints + " points.");
+		System.out.println("============================================================");
 	}
 
 	public static void QA() {
@@ -71,21 +85,52 @@ public class Run {
 		String answer = "";
 		category = chooseCat();
 
-		if (category.equals("1")) {
-			question = nodeBio.question.getPrompt();
-			answer = nodeBio.question.getAnswer();
-			checkAnswer(question, answer);
-		} else if (category.equals("2")) {
-			question = nodeJava.question.getPrompt();
-			answer = nodeJava.question.getAnswer();
-			checkAnswer(question, answer);
-		} else if (category.equals("3")) {
-			question = nodeMovie.question.getPrompt();
-			answer = nodeMovie.question.getAnswer();
-		} else if (category.equals("4")) {
-			question = nodeEncy.question.getPrompt();
-			answer = nodeEncy.question.getAnswer();
-			checkAnswer(question, answer);
+		if (nodeBio != null || nodeJava != null || nodeMovie != null || nodeEncy != null) {
+			if (category.equals("1")) {
+				if (nodeBio == null) {
+					System.out.println(
+							"There are no more questions in category of Biology. Please choose another category.\n");
+				} else if (bioQuestion.hasNext(nodeBio) || bioQuestion.isTail(nodeBio)) {
+					question = nodeBio.question.getPrompt();
+					answer = nodeBio.question.getAnswer();
+					checkAnswer(question, answer);
+					nodeBio = nodeBio.next;
+				}
+			} else if (category.equals("2")) {
+				if (nodeJava == null) {
+					System.out.println(
+							"There are no more questions in category of Java. Please choose another category.\n");
+				} else if (javaQuestion.hasNext(nodeJava) || javaQuestion.isTail(nodeJava)) {
+					question = nodeJava.question.getPrompt();
+					answer = nodeJava.question.getAnswer();
+					checkAnswer(question, answer);
+					nodeJava = nodeJava.next;
+				}
+			} else if (category.equals("3")) {
+				if (nodeMovie == null) {
+					System.out.println(
+							"There are no more questions in category of Movie. Please choose another category.\n");
+				} else if (movieQuestion.hasNext(nodeMovie) || movieQuestion.isTail(nodeMovie)) {
+					question = nodeMovie.question.getPrompt();
+					answer = nodeMovie.question.getAnswer();
+					checkAnswer(question, answer);
+					nodeMovie = nodeMovie.next;
+				}
+			} else if (category.equals("4")) {
+				if (nodeEncy == null) {
+					System.out.println(
+							"There are no more questions in category of Encyclopedia. Please choose another category.\n");
+				} else if (encyQuestion.hasNext(nodeEncy) || encyQuestion.isTail(nodeEncy)) {
+					question = nodeEncy.question.getPrompt();
+					answer = nodeEncy.question.getAnswer();
+					checkAnswer(question, answer);
+					nodeEncy = nodeEncy.next;
+				}
+			}
+		} else {
+			System.out.println("There are no more questions in all categories. You failed.");
+			System.out.println("final score: " + score);
+			run = false;
 		}
 
 	}

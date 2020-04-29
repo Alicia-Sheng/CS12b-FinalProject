@@ -1,17 +1,23 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.Scanner;
 
-public class DoublyLinkedList{
+/**
+ * 
+ * @author Emma Xu, Alicia Sheng
+ *
+ */
+
+public class DoublyLinkedList {
+	
 	public Node head;
 	public Node tail;
 	public int size = 0;
 
 	public DoublyLinkedList() {
-		this.head = null;
-		this.tail = null;
-		this.size = 0;
+		head = null;
+		tail = null;
+		size = 0;
 	}
 
 	public DoublyLinkedList(Question question) {
@@ -62,17 +68,30 @@ public class DoublyLinkedList{
 		}
 		return true;
 	}
-	//readAnswers
-	public void readAnswerFile(String fileName)throws FileNotFoundException{
-		Scanner file=new Scanner(new File(fileName));
-		Node current=head;
-		
+	
+	public boolean isTail(Node node) {
+		if (node.equals(tail)) {
+			return true;
+		}
+		return false;
+	}
+
+	public int getSize() {
+		return this.size;
+	}
+
+	// readAnswers
+	public void readAnswerFile(String fileName) throws FileNotFoundException {
+		Scanner file = new Scanner(new File(fileName));
+		Node current = head;
+
 		while (file.hasNextLine()) {
-			String line=file.nextLine();
+			String line = file.nextLine();
 			current.question.setAnswer(line);
 			if (this.hasNext(current)) {
-				current=current.next;
+				current = current.next;
 			}
 		}
 	}
+
 }
