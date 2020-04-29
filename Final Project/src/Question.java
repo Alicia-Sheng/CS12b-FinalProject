@@ -1,6 +1,5 @@
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Question {
 	private String prompt;
