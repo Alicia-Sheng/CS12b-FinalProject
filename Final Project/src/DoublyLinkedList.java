@@ -2,11 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- * 
- * @author Emma Xu, Alicia Sheng
- *
- */
 
 public class DoublyLinkedList {
 	
@@ -17,7 +12,7 @@ public class DoublyLinkedList {
 	public DoublyLinkedList() {
 		head = null;
 		tail = null;
-		size = 0;
+		size = 1;
 	}
 
 	public DoublyLinkedList(Question question) {
