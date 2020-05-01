@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class GameMode extends Mode {
 
-	private static int winPoints = 5;
+	private static int winPoints = 15;
 
 	public static void main(String[] args) throws FileNotFoundException {
 		initialize();
