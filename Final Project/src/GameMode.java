@@ -34,7 +34,27 @@ public class GameMode extends Mode {
 				"You can choose freely to answer the questions from each category for " + qNumEachCat + " times.");
 		System.out.println("Everytime you get an answer correct, you get 1 more point.");
 		System.out.println("You will win after you get " + winPoints + " points.");
+		System.out.println("Before doing the test, you will have ONE chance to get access to the main contents of the questions in one of the four subject.");
+		System.out.println("**Just type: biology OR java OR movie OR encyclopedia.");
+		subject = inp.nextLine();
+		introduction(subject);
 		System.out.println("============================================================");
+	}
+	
+	public static void introduction(String sub) {
+		if (sub.equals("biology")) {
+			System.out.println(
+				"Questions in Biology is maily about cells, animals, and vegetables. They might have be learnt in your high school. So no worries! Have a try! ");
+		}else if(sub.equals("java")) {
+			System.out.println(
+				"Questions in Java is about data type, array, Random class, operator, and ArrayList! They are REALLY easy!!! ");
+		}else if(sub.equals("movie")) {
+			System.out.println(
+				"Questions in movie is about the most famous movie Forest Gump!!! Famous movie Tranformers and TV series Games of Thrones are waiting for you!!! Don't miss it.");
+		}else if(sub.equals("encyclopedia")) {
+			System.out.println(
+				"This part is quite interesting since it includes Olympics, language, and ocean. Don't miss it! ");
+		}
 	}
 
 	public static void QA() {
