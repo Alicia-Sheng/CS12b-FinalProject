@@ -41,6 +41,7 @@ public class GameMode extends Mode {
 		System.out.println("============================================================");
 	}
 	
+	// Introduce the main directions or contents of four categories. BUT you only have one chance to do that! :)
 	public static void introduction(String sub) {
 		if (sub.equals("biology")) {
 			System.out.println(
@@ -57,6 +58,7 @@ public class GameMode extends Mode {
 		}
 	}
 
+	// This method is about the process of answering the questions and check the correctness of answers. 
 	public static void QA() {
 		Scanner in = new Scanner(System.in);
 		String category = "";
@@ -114,6 +116,7 @@ public class GameMode extends Mode {
 
 	}
 
+	// This method allows tester to choose the category of the test: 1 OR 2 OR 3 OR 4. 
 	public static String chooseCat() {
 		Scanner in = new Scanner(System.in);
 		boolean correctCat = false;
@@ -134,6 +137,7 @@ public class GameMode extends Mode {
 		return category;
 	}
 
+	// This method checks the answer of the tester. 
 	public static void checkAnswer(String question, String answer) {
 		System.out.println(question);
 		String userAnswer = chooseAnswer();
