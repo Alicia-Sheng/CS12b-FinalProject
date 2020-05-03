@@ -47,16 +47,16 @@ public class GameMode extends Mode {
 	
 	// Introduce the main directions or contents of four categories. BUT you only have one chance to do that! :)
 	public static void introduction(String sub) {
-		if (sub.equals("biology")) {
+		if (sub.equals("biology")|| sub.equals("Biology")) {
 			System.out.println(
 				"Questions in Biology is maily about cells, animals, and vegetables. They might have be learnt in your high school. So no worries! Have a try! ");
-		}else if(sub.equals("java")) {
+		}else if(sub.equals("java")|| sub.equals("Java")) {
 			System.out.println(
 				"Questions in Java is about data type, array, Random class, operator, and ArrayList! They are REALLY easy!!! ");
-		}else if(sub.equals("movie")) {
+		}else if(sub.equals("movie")|| sub.equals("Movie")) {
 			System.out.println(
 				"Questions in movie is about the most famous movie Forest Gump!!! Famous movie Tranformers and TV series Games of Thrones are waiting for you!!! Don't miss it.");
-		}else if(sub.equals("encyclopedia")) {
+		}else if(sub.equals("encyclopedia")|| sub.equals("Encyclopedia")) {
 			System.out.println(
 				"This part is quite interesting since it includes Olympics, language, and ocean. Don't miss it! ");
 		}
