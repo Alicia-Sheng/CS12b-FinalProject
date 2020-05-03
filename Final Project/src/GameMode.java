@@ -28,7 +28,7 @@ public class GameMode extends Mode {
 		}
 	}
 	
-    // print out the headings! Telling the rule and chances of the test.
+        // print out the headings! Telling the rule and chances of the test.
 	public static void print() {
 		Scanner inp = new Scanner(System.in);
 		String subject = "";
@@ -62,7 +62,7 @@ public class GameMode extends Mode {
 		}
 	}
 	
-    // This method is about the process of answering the questions
+        // This method is about the process of Questions and Answers.
 	public static void QA() {
 		Scanner in = new Scanner(System.in);
 		String category = "";
@@ -120,7 +120,8 @@ public class GameMode extends Mode {
 
 	}
 
-	// This method allows tester to choose the category of the test: 1 OR 2 OR 3 OR 4. 
+	// This method allows tester to choose the category of the test.
+	// 1 for biology, 2 for java, 3 for movie, 4 for encyclopedia
 	public static String chooseCat() {
 		Scanner in = new Scanner(System.in);
 		boolean correctCat = false;
@@ -144,7 +145,7 @@ public class GameMode extends Mode {
 	}
 	
 	
-    // This method checks the answer of the tester. 
+        // This method checks the correctness of the answer.
 	public static void checkAnswer(String question, String answer) {
 		System.out.println(question);
 		String userAnswer = chooseAnswer();
