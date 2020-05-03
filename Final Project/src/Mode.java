@@ -29,7 +29,9 @@ public abstract class Mode {
 	protected static double score;
 	protected static int qNumEachCat;
 	protected static boolean run;
-
+	
+	
+        // reads the file of questions and answers
 	public static void initialize() throws FileNotFoundException {
 		bioQuestion = ReadQA.readFile(pathBio);
 		bioQuestion.readAnswerFile(pathBioAnswer);
@@ -52,7 +54,8 @@ public abstract class Mode {
 		qNumEachCat = 5;
 		run = true;
 	}
-
+	
+        // input the answer  and "judge" its correctness
 	public static String chooseAnswer() {
 		Scanner in = new Scanner(System.in);
 		boolean correctAnswer = false;
