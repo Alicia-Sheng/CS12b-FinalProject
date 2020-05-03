@@ -38,7 +38,7 @@ public class GameMode extends Mode {
 				"You can choose freely to answer the questions from each category for " + qNumEachCat + " times.");
 		System.out.println("Everytime you get an answer correct, you get 1 more point.");
 		System.out.println("You will win after you get " + winPoints + " points.");
-		System.out.println("Before doing the test, you will have ONE chance to get access to the main contents of the questions in one of the four subject.");
+		System.out.println("Before doing the test, you will have ONE chance to get access to the main contents of the questions in one of the four subjects.");
 		System.out.println("**Just type: biology OR java OR movie OR encyclopedia.");
 		subject = inp.nextLine();
 		introduction(subject);
