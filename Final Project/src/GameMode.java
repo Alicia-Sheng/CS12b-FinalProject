@@ -46,7 +46,7 @@ public class GameMode extends Mode {
 	}
 	
 	// Introduce the main directions or contents of four categories. BUT you only have one chance to do that! :)
-	public static void introduction(String sub) {
+	public static void introduction(String sub) { // can check invalid input here, but since there would be no exceptions and the code would go to the QA part for invalid inputs, we just leave it here
 		if (sub.equals("biology")|| sub.equals("Biology")) {
 			System.out.println(
 				"Questions in Biology is maily about cells, animals, and vegetables. They might have be learnt in your high school. So no worries! Have a try! ");
